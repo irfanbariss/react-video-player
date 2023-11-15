@@ -1,25 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react'
+import './App.css'
+import Menu from './components/Menu'
+import Video from './components/Video'
 
 function App() {
+  const videos = ['video1.mp4', 'video2.mp4', 'video3.mp4']
+  const [selectedVideo, setSelectedVideo] = useState('video1.mp4')
+  const handleVideoChange = (video) => {
+    setSelectedVideo(video)
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="wrapper">
+      <h1>React Video Player</h1>
+      <div className="container">
+        <Video selectedVideo={selectedVideo} />
+        <Menu
+          selectedVideo={selectedVideo}
+          handleVideoChange={handleVideoChange}
+          videos={videos}
+        />
+      </div>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
